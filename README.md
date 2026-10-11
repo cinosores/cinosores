@@ -3,6 +3,13 @@
   <img src="header-light.svg" width="100%" alt="Cintia Osores, Product Owner y Analista Funcional Senior en Buenos Aires. Más de 10 años en producto y análisis funcional, programa de fidelización con más de 3 millones de socios, 40 integraciones migradas y 4 aplicaciones críticas a cargo. Certificación CSPO.">
 </picture>
 
+<a href="https://cinosores.github.io/cinosores/">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="cta-portfolio-dark.svg">
+    <img src="cta-portfolio-light.svg" height="36" alt="Ver portfolio interactivo">
+  </picture>
+</a>
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="experiencia-dark.svg">
   <img src="experiencia-light.svg" width="100%" alt="Experiencia: PO y Analista Funcional Sr en Oil & Gas upstream (actual); Technical Product Owner en un programa de fidelización con más de 3M de socios; Analista Funcional Senior en integraciones y medios de pago.">
