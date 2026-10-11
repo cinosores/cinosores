@@ -1,46 +1,36 @@
-<p align="center">
-  <img src="banner.svg" width="100%" alt="Cintia Osores — Product Owner y Analista Funcional Senior">
-</p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="header-dark.svg">
+  <img src="header-light.svg" width="100%" alt="Cintia Osores, Product Owner y Analista Funcional Senior en Buenos Aires. Más de 10 años en producto y análisis funcional, programa de fidelización con más de 3 millones de socios, 40 integraciones migradas y 4 aplicaciones críticas a cargo. Certificación CSPO.">
+</picture>
 
-Trabajo entre el negocio y los equipos técnicos: relevo, priorizo el backlog, escribo especificaciones que se pueden desarrollar sin adivinar y valido que lo entregado resuelva el problema real. Hoy lo hago en aplicaciones críticas del sector **Oil & Gas (upstream)**, coordinando proveedores externos y equipos de desarrollo.
-
-Este GitHub es mi espacio para **prototipos y productos propios hechos con IA**: los uso para probar ideas rápido y llegar a la reunión con algo navegable en lugar de un documento.
-
-<p align="center">
-  <img src="cifras.svg" width="100%" alt="10+ años en producto y análisis funcional. 3M+ socios en un programa de fidelización. 40 integraciones migradas a una nueva plataforma.">
-</p>
-
-### Qué hago
-
-- **Producto:** roadmap, backlog, criterios de aceptación, UAT y gestión de stakeholders.
-- **Análisis funcional:** relevamiento de procesos, especificaciones funcionales, flujos y BPMN.
-- **Integraciones y datos:** APIs REST/SOAP, SQL y migración de integraciones a MuleSoft Anypoint.
-- **IA aplicada:** prototipos con Google AI Studio, Claude y AWS Kiro, y especificaciones pensadas para desarrollo asistido por IA.
-
-### Proyectos
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="experiencia-dark.svg">
+  <img src="experiencia-light.svg" width="100%" alt="Experiencia: PO y Analista Funcional Sr en Oil & Gas upstream (actual); Technical Product Owner en un programa de fidelización con más de 3M de socios; Analista Funcional Senior en integraciones y medios de pago.">
+</picture>
 
 <a href="https://postulamejor.com.ar">
-  <img src="proyecto-postula-mejor.svg" width="100%" alt="Postulá Mejor: web app gratuita con IA para buscar trabajo, del aviso a la entrevista.">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="proyecto-postula-mejor-dark.svg">
+    <img src="proyecto-postula-mejor-light.svg" width="100%" alt="Postulá Mejor, en desarrollo: web app gratuita con IA para buscar trabajo, del aviso a la entrevista.">
+  </picture>
 </a>
 
 <a href="https://github.com/cinosores/Clariz-Viste">
-  <img src="proyecto-gestion-textil.svg" width="100%" alt="Gestión de producción textil: catálogo, stock, producción por etapas, ventas y cobros.">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="proyecto-gestion-textil-dark.svg">
+    <img src="proyecto-gestion-textil-light.svg" width="100%" alt="Gestión textil: sistema para una marca de indumentaria, del corte a la venta y el cobro.">
+  </picture>
 </a>
 
-### Herramientas
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="stack-dark.svg">
+  <img src="stack-light.svg" width="100%" alt="Herramientas por área y formación con su estado.">
+</picture>
 
-<p align="center">
-  <img src="herramientas.svg" width="100%" alt="Herramientas de producto, datos e integraciones, cloud e IA">
-</p>
-
-### Formación
-
-- **CSPO**, Certified Scrum Product Owner (Scrum Alliance)
-- Consultor en IA, UTN
-- Licenciatura en Administración de Empresas, FAEC (en curso)
-- En preparación: AWS Certified Cloud Practitioner
-
-<p align="center">
-  <a href="https://www.linkedin.com/in/cintiaosores"><img src="https://img.shields.io/badge/LinkedIn-cintiaosores-FF8A3D?style=for-the-badge&labelColor=161B22" alt="LinkedIn"></a>
-  <a href="mailto:noeliaosores@gmail.com"><img src="https://img.shields.io/badge/Email-noeliaosores%40gmail.com-5EEAD4?style=for-the-badge&labelColor=161B22" alt="Email"></a>
-</p>
+<a href="https://www.linkedin.com/in/cintiaosores">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="cta-dark.svg">
+    <img src="cta-light.svg" height="36" alt="Contactar por LinkedIn">
+  </picture>
+</a>
+&nbsp; o escribime a [noeliaosores@gmail.com](mailto:noeliaosores@gmail.com)
