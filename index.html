@@ -259,21 +259,14 @@ footer { padding: 24px 0 40px; color: var(--text-3); font-size: 12.5px; }
 .intro h1 { display: inline-block; background: linear-gradient(100deg, var(--text) 35%, var(--c-pri) 75%, var(--c-rel)); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: 4px; }
 
 .stage3d { perspective: 1100px; }
-.tilt { --rx: 8deg; --ry: -12deg; --mx: 50%; --my: 50%; --stage: var(--c-rel);
-  transform: rotateX(var(--rx)) rotateY(var(--ry)); transform-style: preserve-3d;
-  transition: transform 200ms cubic-bezier(.4,0,.2,1), box-shadow 200ms cubic-bezier(.4,0,.2,1), border-color 200ms cubic-bezier(.4,0,.2,1);
+.tilt { --mx: 50%; --my: 50%; --stage: var(--c-rel);
+  transition: box-shadow 200ms cubic-bezier(.4,0,.2,1), border-color 200ms cubic-bezier(.4,0,.2,1);
   background: var(--glass); backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4);
   border-color: color-mix(in srgb, var(--stage) 45%, var(--border));
   box-shadow: 0 30px 60px -20px color-mix(in srgb, var(--stage) 45%, transparent), 0 0 0 1px color-mix(in srgb, var(--stage) 15%, transparent); }
-.tilt.moving { transition: transform 80ms linear, box-shadow 200ms cubic-bezier(.4,0,.2,1), border-color 200ms cubic-bezier(.4,0,.2,1); }
 .tilt::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  background: radial-gradient(420px circle at var(--mx) var(--my), rgba(255,255,255,.22), transparent 45%); mix-blend-mode: soft-light; }
-.tilt .panel-head { background: transparent; transform: translateZ(18px); }
-.tilt .seg { transform: translateZ(28px); }
-.tilt .step-body { transform: translateZ(42px); }
-.layer { position: absolute; inset: 0; border-radius: var(--r-card); border: 1px solid var(--border); background: var(--glass); pointer-events: none; }
-.layer.l1 { transform: translateZ(-40px) translate(14px, 14px); opacity: .7; }
-.layer.l2 { transform: translateZ(-80px) translate(28px, 28px); opacity: .4; }
+  background: radial-gradient(420px circle at var(--mx) var(--my), color-mix(in srgb, var(--stage) 12%, transparent), transparent 55%); }
+.tilt .panel-head { background: transparent; }
 
 .seg button { position: relative; }
 .seg button[aria-selected="true"] { padding-left: 14px; }
@@ -326,10 +319,9 @@ footer { padding: 24px 0 40px; color: var(--text-3); font-size: 12.5px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .tilt { --rx: 0deg !important; --ry: 0deg !important; }
   .reveal { opacity: 1; transform: none; }
 }
-@media (max-width: 860px) { .tilt { --rx: 0deg; --ry: 0deg; } .layer { display: none; } .aurora { inset: -40px -20vw 0; } }
+@media (max-width: 860px) { .aurora { inset: -40px -20vw 0; } }
 </style>
 </head>
 <body>
@@ -385,7 +377,6 @@ footer { padding: 24px 0 40px; color: var(--text-3); font-size: 12.5px; }
 
     <div class="stage3d">
     <div class="panel tilt" id="tilt" aria-labelledby="proc-title">
-      <div class="layer l1" aria-hidden="true"></div><div class="layer l2" aria-hidden="true"></div>
       <div class="panel-head"><h2 id="proc-title">Cómo trabajo</h2><span class="right faint" style="font-size:12px">4 etapas</span></div>
       <div class="seg" role="tablist" aria-label="Etapas de trabajo">
         <button role="tab" id="t0" style="--c:var(--c-rel)" aria-selected="true" aria-controls="step" tabindex="0">Relevar</button>
@@ -722,14 +713,10 @@ footer { padding: 24px 0 40px; color: var(--text-3); font-size: 12.5px; }
     tilt.addEventListener("pointermove", (e) => {
       const r = tilt.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
-      tilt.classList.add("moving");
-      tilt.style.setProperty("--ry", `${(x - .5) * 16}deg`);
-      tilt.style.setProperty("--rx", `${(.5 - y) * 12}deg`);
       tilt.style.setProperty("--mx", `${x * 100}%`); tilt.style.setProperty("--my", `${y * 100}%`);
     });
     tilt.addEventListener("pointerleave", () => {
-      tilt.classList.remove("moving");
-      ["--rx", "--ry", "--mx", "--my"].forEach((v) => tilt.style.removeProperty(v));
+      ["--mx", "--my"].forEach((v) => tilt.style.removeProperty(v));
     });
     $$(".project").forEach((c) => {
       c.addEventListener("pointermove", (e) => {
