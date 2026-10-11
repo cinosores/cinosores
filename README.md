@@ -1,6 +1,6 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="header-dark.svg">
-  <img src="header-light.svg" width="100%" alt="Cintia Osores, Product Owner y Analista Funcional Senior en Buenos Aires. Más de 10 años en producto y análisis funcional, programa de fidelización con más de 3 millones de socios, 40 integraciones migradas y 4 aplicaciones críticas a cargo. Certificación CSPO.">
+  <source media="(prefers-color-scheme: dark)" srcset="banner-dark.svg">
+  <img src="banner-light.svg" width="100%" alt="Cintia Osores, Product Owner y Analista Funcional Senior. Animación: un pedido del negocio pasa por Relevar, Priorizar, Especificar y Validar hasta quedar aprobado.">
 </picture>
 
 <a href="https://cinosores.github.io/cinosores/">
@@ -9,6 +9,11 @@
     <img src="cta-portfolio-light.svg" height="36" alt="Ver portfolio interactivo">
   </picture>
 </a>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="header-dark.svg">
+  <img src="header-light.svg" width="100%" alt="Resumen: más de 10 años en producto y análisis funcional, programa de fidelización con más de 3 millones de socios, 40 integraciones migradas y 4 aplicaciones críticas a cargo. Certificación CSPO.">
+</picture>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="experiencia-dark.svg">
