@@ -45,4 +45,4 @@
     <img src="cta-light.svg" height="36" alt="Contactar por LinkedIn">
   </picture>
 </a>
-&nbsp; o escribime a [noeliaosores@gmail.com](mailto:noeliaosores@gmail.com)
+&nbsp; o escribime a <a href="mailto:noeliaosores@gmail.com">noeliaosores@gmail.com</a>
