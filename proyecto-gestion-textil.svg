@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 280" width="1280" height="280" role="img" aria-label="Proyecto: sistema de gestión para una marca de indumentaria. Catálogo, stock, producción por etapas, ventas y cobros.">
+  <defs>
+    <clipPath id="k"><rect width="1280" height="280" rx="18"/></clipPath>
+    <style>
+      .sans { font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+      .mono { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+      .st { animation: on 6s linear infinite; }
+      .s1 { animation-delay: 0s; } .s2 { animation-delay: 1.5s; } .s3 { animation-delay: 3s; } .s4 { animation-delay: 4.5s; }
+      @keyframes on { 0% { opacity: 0.35; } 5% { opacity: 1; } 25% { opacity: 1; } 30% { opacity: 0.35; } 100% { opacity: 0.35; } }
+    </style>
+  </defs>
+  <g clip-path="url(#k)">
+    <rect width="1280" height="280" fill="#0D1117"/>
+    <rect x="0" y="0" width="8" height="280" fill="#5EEAD4"/>
+  </g>
+  <rect x="0.5" y="0.5" width="1279" height="279" rx="18" fill="none" stroke="#30363D"/>
+
+  <g class="sans">
+    <text x="56" y="62" class="mono" font-size="15" fill="#8B949E">proyecto freelance / 2026</text>
+    <text x="54" y="112" font-size="38" font-weight="700" fill="#E6EDF3" letter-spacing="-0.5">Gestión de producción textil</text>
+    <text x="56" y="152" font-size="20" fill="#C9D1D9">Sistema para una marca de indumentaria que hoy</text>
+    <text x="56" y="180" font-size="20" fill="#C9D1D9">se maneja con cuadernos y grupos de WhatsApp.</text>
+
+    <g font-size="15" font-weight="600">
+      <rect x="56" y="210" width="112" height="32" rx="16" fill="none" stroke="#30363D" stroke-width="1.5"/>
+      <text x="112" y="231" text-anchor="middle" fill="#E6EDF3">TypeScript</text>
+      <rect x="178" y="210" width="68" height="32" rx="16" fill="none" stroke="#30363D" stroke-width="1.5"/>
+      <text x="212" y="231" text-anchor="middle" fill="#E6EDF3">Vite</text>
+      <rect x="256" y="210" width="86" height="32" rx="16" fill="none" stroke="#30363D" stroke-width="1.5"/>
+      <text x="299" y="231" text-anchor="middle" fill="#E6EDF3">Gemini</text>
+    </g>
+  </g>
+
+  <!-- Flujo de producción -->
+  <g class="sans" font-size="15" font-weight="600" text-anchor="middle">
+    <text x="760" y="62" class="mono" font-size="15" font-weight="400" fill="#8B949E" text-anchor="start">// seguimiento por etapa</text>
+    <line x1="812" y1="150" x2="1172" y2="150" stroke="#30363D" stroke-width="2" stroke-dasharray="4 6"/>
+
+    <g class="st s1">
+      <rect x="760" y="110" width="108" height="80" rx="12" fill="#161B22" stroke="#5EEAD4" stroke-width="1.5"/>
+      <text x="814" y="156" fill="#E6EDF3">Corte</text>
+    </g>
+    <g class="st s2">
+      <rect x="880" y="110" width="108" height="80" rx="12" fill="#161B22" stroke="#9FD6AC" stroke-width="1.5"/>
+      <text x="934" y="156" fill="#E6EDF3">Estampado</text>
+    </g>
+    <g class="st s3">
+      <rect x="1000" y="110" width="108" height="80" rx="12" fill="#161B22" stroke="#DCB077" stroke-width="1.5"/>
+      <text x="1054" y="156" fill="#E6EDF3">Costura</text>
+    </g>
+    <g class="st s4">
+      <rect x="1120" y="110" width="108" height="80" rx="12" fill="#161B22" stroke="#FF8A3D" stroke-width="1.5"/>
+      <text x="1174" y="156" fill="#E6EDF3">Depósito</text>
+    </g>
+
+    <text x="760" y="236" class="sans" font-size="16" font-weight="400" fill="#8B949E" text-anchor="start">Incluye catálogo, stock, ventas, cobros por etapas y reportes.</text>
+  </g>
+</svg>
