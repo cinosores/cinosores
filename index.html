@@ -19,6 +19,8 @@
   --ease-in: cubic-bezier(.16,1,.3,1); --ease-out: cubic-bezier(.7,0,.84,0); --ease-std: cubic-bezier(.4,0,.2,1);
   --t-micro: 120ms; --t-comp: 200ms; --t-modal: 280ms;
   --r-card: 10px; --r-ctl: 6px;
+  --c-rel: #0ea5a4; --c-pri: #7c5cff; --c-esp: #e8913a; --c-val: #22a35a;
+  --aurora-o: .55; --glass: rgba(255,255,255,.72);
   --font: "Geist", -apple-system, "Segoe UI", sans-serif; --mono: "Geist Mono", ui-monospace, monospace;
   color-scheme: light;
 }
@@ -29,7 +31,9 @@
     --accent: #7c7cf0; --accent-hover: #8e8ef4; --accent-fg: #0b0b10;
     --green: #46b37a; --amber: #d8a54a; --gray: #8b8b94;
     --glow: rgba(255,255,255,.07); --overlay: rgba(0,0,0,.55);
-    color-scheme: dark;
+    --aurora-o: .5; --glass: rgba(22,22,26,.62);
+  --c-rel: #2dd4bf; --c-pri: #9d87ff; --c-esp: #f5a35b; --c-val: #4ade80;
+  color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
@@ -38,12 +42,15 @@
   --accent: #7c7cf0; --accent-hover: #8e8ef4; --accent-fg: #0b0b10;
   --green: #46b37a; --amber: #d8a54a; --gray: #8b8b94;
   --glow: rgba(255,255,255,.07); --overlay: rgba(0,0,0,.55);
+  --aurora-o: .5; --glass: rgba(22,22,26,.62);
+  --c-rel: #2dd4bf; --c-pri: #9d87ff; --c-esp: #f5a35b; --c-val: #4ade80;
   color-scheme: dark;
 }
 
 /* ---------- base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: clip; }
 body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 var(--font); font-feature-settings: "tnum"; -webkit-font-smoothing: antialiased; }
 a { color: inherit; }
 button { font: inherit; color: inherit; }
@@ -102,9 +109,9 @@ section { scroll-margin-top: 68px; }
 /* ---------- hero ---------- */
 .hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 16px; padding: 32px 0 16px; }
 .intro { padding: 4px 0; }
-.intro .status { margin-bottom: 18px; }
+.intro .status { display: flex; width: fit-content; margin-bottom: 18px; }
 .intro h1 { margin: 0; font-size: 40px; line-height: 1.1; font-weight: 600; letter-spacing: -1.2px; }
-.intro .role { margin: 8px 0 0; font-size: 17px; color: var(--text-2); }
+.intro .role { margin: 4px 0 0; font-size: 17px; color: var(--text-2); }
 .intro p.lead { margin: 18px 0 22px; max-width: 52ch; color: var(--text-2); font-size: 15px; }
 .actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .hint { margin: 14px 0 0; font-size: 12.5px; }
@@ -233,6 +240,70 @@ footer { padding: 24px 0 40px; color: var(--text-3); font-size: 12.5px; }
   transition: opacity var(--t-comp) var(--ease-in), transform var(--t-comp) var(--ease-in); }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
+/* ---------- onda: aurora, vidrio, 3D, spotlight ---------- */
+.hero { position: relative; isolation: isolate; }
+.aurora { position: absolute; z-index: -1; inset: -40px -10vw 0; overflow: hidden; pointer-events: none;
+  mask-image: radial-gradient(ellipse 70% 80% at 60% 40%, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 60% 40%, #000 30%, transparent 75%); }
+.aurora i { position: absolute; width: 46vmax; height: 46vmax; border-radius: 50%; filter: blur(70px); opacity: var(--aurora-o);
+  animation: drift 22s cubic-bezier(.4,0,.2,1) infinite alternate; }
+.aurora i:nth-child(1) { background: var(--c-pri); left: 30%; top: -30%; }
+.aurora i:nth-child(2) { background: var(--c-rel); left: 58%; top: 10%; animation-duration: 26s; animation-direction: alternate-reverse; }
+.aurora i:nth-child(3) { background: var(--c-esp); left: 8%; top: 25%; width: 30vmax; height: 30vmax; opacity: calc(var(--aurora-o) * .6); animation-duration: 30s; }
+@keyframes drift { 0% { transform: translate(0,0) scale(1); } 50% { transform: translate(6%, 8%) scale(1.12); } 100% { transform: translate(-8%, -4%) scale(.95); } }
+.grid-bg { position: absolute; z-index: -1; inset: 0; pointer-events: none; opacity: .3;
+  background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 32px 32px; mask-image: radial-gradient(ellipse 60% 70% at 70% 30%, #000, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 70% at 70% 30%, #000, transparent 70%); }
+
+.intro h1 { display: inline-block; background: linear-gradient(100deg, var(--text) 35%, var(--c-pri) 75%, var(--c-rel)); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: 4px; }
+
+.stage3d { perspective: 1100px; }
+.tilt { --rx: 8deg; --ry: -12deg; --mx: 50%; --my: 50%; --stage: var(--c-rel);
+  transform: rotateX(var(--rx)) rotateY(var(--ry)); transform-style: preserve-3d;
+  transition: transform 200ms cubic-bezier(.4,0,.2,1), box-shadow 200ms cubic-bezier(.4,0,.2,1), border-color 200ms cubic-bezier(.4,0,.2,1);
+  background: var(--glass); backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border-color: color-mix(in srgb, var(--stage) 45%, var(--border));
+  box-shadow: 0 30px 60px -20px color-mix(in srgb, var(--stage) 45%, transparent), 0 0 0 1px color-mix(in srgb, var(--stage) 15%, transparent); }
+.tilt.moving { transition: transform 80ms linear, box-shadow 200ms cubic-bezier(.4,0,.2,1), border-color 200ms cubic-bezier(.4,0,.2,1); }
+.tilt::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(420px circle at var(--mx) var(--my), rgba(255,255,255,.22), transparent 45%); mix-blend-mode: soft-light; }
+.tilt .panel-head { background: transparent; transform: translateZ(18px); }
+.tilt .seg { transform: translateZ(28px); }
+.tilt .step-body { transform: translateZ(42px); }
+.layer { position: absolute; inset: 0; border-radius: var(--r-card); border: 1px solid var(--border); background: var(--glass); pointer-events: none; }
+.layer.l1 { transform: translateZ(-40px) translate(14px, 14px); opacity: .7; }
+.layer.l2 { transform: translateZ(-80px) translate(28px, 28px); opacity: .4; }
+
+.seg button { position: relative; }
+.seg button[aria-selected="true"] { padding-left: 14px; }
+.seg button[aria-selected="true"]::before { content: ""; position: absolute; left: 8px; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%; background: var(--c); }
+.seg button[aria-selected="true"] { box-shadow: 0 0 0 1px color-mix(in srgb, var(--c) 40%, var(--border)), 0 4px 12px -4px color-mix(in srgb, var(--c) 50%, transparent); }
+.step-body h3 { display: flex; align-items: center; gap: 8px; }
+.step-body h3::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--stage); box-shadow: 0 0 12px var(--stage); }
+.deliv li .mono { color: var(--stage); }
+
+.spot { overflow: hidden; }
+.spot::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0;
+  background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--hue, var(--c-pri)) 14%, transparent), transparent 60%);
+  transition: opacity 150ms cubic-bezier(.4,0,.2,1); }
+.spot:hover::after { opacity: 1; }
+.spot:hover { border-color: color-mix(in srgb, var(--hue, var(--c-pri)) 40%, var(--border)); }
+
+.stats .stat { position: relative; }
+.stats .stat::before { content: ""; position: absolute; left: 16px; top: 0; width: 28px; height: 2px; border-radius: 2px; background: var(--hue); box-shadow: 0 0 10px var(--hue); }
+.stats .stat:nth-child(1) { --hue: var(--c-rel); } .stats .stat:nth-child(2) { --hue: var(--c-pri); }
+.stats .stat:nth-child(3) { --hue: var(--c-esp); } .stats .stat:nth-child(4) { --hue: var(--c-val); }
+
+.project { position: relative; transform-style: preserve-3d; }
+.project::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; border-radius: var(--r-card) var(--r-card) 0 0;
+  background: linear-gradient(90deg, transparent, var(--hue), transparent); }
+.project:hover { transform: perspective(900px) rotateX(var(--prx, 0deg)) rotateY(var(--pry, 0deg)); }
+.project { transition: transform 150ms cubic-bezier(.4,0,.2,1), border-color 150ms cubic-bezier(.4,0,.2,1), background-color 150ms cubic-bezier(.4,0,.2,1); }
+
+.reveal { opacity: 0; transform: translateY(8px); transition: opacity 300ms cubic-bezier(.16,1,.3,1), transform 300ms cubic-bezier(.16,1,.3,1); }
+.reveal.on { opacity: 1; transform: none; }
+
 @keyframes in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 
 /* ---------- responsive ---------- */
@@ -255,7 +326,10 @@ footer { padding: 24px 0 40px; color: var(--text-3); font-size: 12.5px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
+  .tilt { --rx: 0deg !important; --ry: 0deg !important; }
+  .reveal { opacity: 1; transform: none; }
 }
+@media (max-width: 860px) { .tilt { --rx: 0deg; --ry: 0deg; } .layer { display: none; } .aurora { inset: -40px -20vw 0; } }
 </style>
 </head>
 <body>
@@ -295,6 +369,8 @@ footer { padding: 24px 0 40px; color: var(--text-3); font-size: 12.5px; }
 <main id="main" class="wrap">
   <div id="top"></div>
   <section class="hero" aria-labelledby="name">
+    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="grid-bg" aria-hidden="true"></div>
     <div class="intro">
       <span class="status"><span class="dot green live"></span>PO y Analista Funcional Sr en Oil &amp; Gas</span>
       <h1 id="name">Cintia Osores</h1>
@@ -307,38 +383,41 @@ footer { padding: 24px 0 40px; color: var(--text-3); font-size: 12.5px; }
       <p class="hint faint">Atajo: <span class="kbd" data-kbd>Ctrl K</span> para buscar secciones, proyectos y acciones.</p>
     </div>
 
-    <div class="panel" aria-labelledby="proc-title">
+    <div class="stage3d">
+    <div class="panel tilt" id="tilt" aria-labelledby="proc-title">
+      <div class="layer l1" aria-hidden="true"></div><div class="layer l2" aria-hidden="true"></div>
       <div class="panel-head"><h2 id="proc-title">Cómo trabajo</h2><span class="right faint" style="font-size:12px">4 etapas</span></div>
       <div class="seg" role="tablist" aria-label="Etapas de trabajo">
-        <button role="tab" id="t0" aria-selected="true" aria-controls="step" tabindex="0">Relevar</button>
-        <button role="tab" id="t1" aria-selected="false" aria-controls="step" tabindex="-1">Priorizar</button>
-        <button role="tab" id="t2" aria-selected="false" aria-controls="step" tabindex="-1">Especificar</button>
-        <button role="tab" id="t3" aria-selected="false" aria-controls="step" tabindex="-1">Validar</button>
+        <button role="tab" id="t0" style="--c:var(--c-rel)" aria-selected="true" aria-controls="step" tabindex="0">Relevar</button>
+        <button role="tab" id="t1" style="--c:var(--c-pri)" aria-selected="false" aria-controls="step" tabindex="-1">Priorizar</button>
+        <button role="tab" id="t2" style="--c:var(--c-esp)" aria-selected="false" aria-controls="step" tabindex="-1">Especificar</button>
+        <button role="tab" id="t3" style="--c:var(--c-val)" aria-selected="false" aria-controls="step" tabindex="-1">Validar</button>
       </div>
       <div class="step-body" id="step" role="tabpanel" aria-labelledby="t0"></div>
     </div>
+    </div>
   </section>
 
-  <div class="panel stats" role="list" aria-label="Datos clave">
-    <div class="stat" role="listitem"><b>10+</b><span>años en producto y análisis</span></div>
-    <div class="stat" role="listitem"><b>3M+</b><span>socios en un programa de fidelización</span></div>
-    <div class="stat" role="listitem"><b>40</b><span>integraciones migradas</span></div>
-    <div class="stat" role="listitem"><b>4</b><span>aplicaciones críticas a cargo</span></div>
+  <div class="panel stats reveal" role="list" aria-label="Datos clave">
+    <div class="stat" role="listitem"><b data-count="10" data-suffix="+">10+</b><span>años en producto y análisis</span></div>
+    <div class="stat" role="listitem"><b data-count="3" data-suffix="M+">3M+</b><span>socios en un programa de fidelización</span></div>
+    <div class="stat" role="listitem"><b data-count="40">40</b><span>integraciones migradas</span></div>
+    <div class="stat" role="listitem"><b data-count="4">4</b><span>aplicaciones críticas a cargo</span></div>
   </div>
 
   <div class="stack">
-    <section id="experiencia" class="panel" aria-labelledby="exp-title">
+    <section id="experiencia" class="panel reveal" aria-labelledby="exp-title">
       <div class="panel-head"><h2 id="exp-title">Experiencia</h2><span class="count">3</span><span class="right faint" style="font-size:12px">Tocá una fila para ver el detalle</span></div>
       <div class="row thead" aria-hidden="true"><span>Rol</span><span class="ctx">Contexto</span><span class="res">Resultado</span><span>Estado</span><span></span></div>
       <div id="exp-list"></div>
     </section>
 
-    <section id="proyectos" aria-labelledby="proj-title">
+    <section id="proyectos" class="reveal" aria-labelledby="proj-title">
       <h2 id="proj-title" class="sr-only">Proyectos</h2>
       <div class="grid2" id="proj-list"></div>
     </section>
 
-    <div class="grid2" style="align-items:start">
+    <div class="grid2 reveal" style="align-items:start">
       <section id="herramientas" class="panel" aria-labelledby="tools-title">
         <div class="panel-head"><h2 id="tools-title">Herramientas</h2></div>
         <div class="tools">
@@ -352,7 +431,7 @@ footer { padding: 24px 0 40px; color: var(--text-3); font-size: 12.5px; }
       </section>
     </div>
 
-    <section id="contacto" class="panel" aria-labelledby="contact-title">
+    <section id="contacto" class="panel reveal" aria-labelledby="contact-title">
       <div class="panel-head"><h2 id="contact-title">Contacto</h2></div>
       <div class="contact">
         <div>
@@ -433,12 +512,12 @@ footer { padding: 24px 0 40px; color: var(--text-3); font-size: 12.5px; }
       det: ["Integración de pasarelas de pago con Mercado Pago y Fiserv.", "Relevamiento, especificación y pruebas de integraciones."] },
   ];
   const PROJECTS = [
-    { id: "postula", kind: "Producto propio", name: "Postulá Mejor", st: ["En desarrollo", "amber", true],
+    { id: "postula", hue: "var(--c-pri)", kind: "Producto propio", name: "Postulá Mejor", st: ["En desarrollo", "amber", true],
       desc: "Web app gratuita que acompaña la búsqueda laboral con IA, del aviso a la entrevista.",
       kv: [["Para", "Personas que buscan trabajo"], ["Modelo", "Gratis, con aportes voluntarios"], ["IA", "Google Gemini"]], stack: ["Gemini"],
       flow: ["Comparar CV y aviso", "Ajustar el CV", "Optimizar LinkedIn", "Practicar la entrevista", "Seguir postulaciones"],
       link: ["Visitar postulamejor.com.ar", "https://postulamejor.com.ar"] },
-    { id: "textil", kind: "Proyecto freelance", name: "Gestión textil", st: null,
+    { id: "textil", hue: "var(--c-val)", kind: "Proyecto freelance", name: "Gestión textil", st: null,
       desc: "Sistema de gestión para una marca de indumentaria que hoy trabaja con cuadernos y grupos de WhatsApp.",
       kv: [["Para", "Marca de indumentaria"], ["Incluye", "Stock, producción, ventas, cobros y reportes"], ["Stack", null]],
       stack: ["TypeScript", "Vite", "Gemini"],
@@ -455,11 +534,13 @@ footer { padding: 24px 0 40px; color: var(--text-3); font-size: 12.5px; }
 
   /* ---------- proceso (tabs) ---------- */
   const tabs = $$('.hero [role="tab"]');
+  const STAGE = ["--c-rel", "--c-pri", "--c-esp", "--c-val"];
   const stepEl = $("#step");
   function showStep(i, focus) {
     tabs.forEach((t, j) => { t.setAttribute("aria-selected", String(i === j)); t.tabIndex = i === j ? 0 : -1; });
     const s = STEPS[i];
     stepEl.setAttribute("aria-labelledby", tabs[i].id);
+    $("#tilt").style.setProperty("--stage", `var(${STAGE[i]})`);
     stepEl.removeAttribute("data-anim"); void stepEl.offsetWidth; stepEl.setAttribute("data-anim", "");
     stepEl.innerHTML = `<h3>${s.title}</h3><p>${esc(s.text)}</p><ul class="deliv">${s.items.map(([k, v, tool]) =>
       `<li><span class="mono">${esc(k)}</span>${esc(v)}<span class="tool">${esc(tool)}</span></li>`).join("")}</ul>`;
@@ -488,7 +569,7 @@ footer { padding: 24px 0 40px; color: var(--text-3); font-size: 12.5px; }
 
   /* ---------- proyectos ---------- */
   $("#proj-list").innerHTML = PROJECTS.map((p) => `
-    <button class="panel project" data-project="${p.id}" aria-haspopup="dialog">
+    <button class="panel project spot" style="--hue:${p.hue}" data-project="${p.id}" aria-haspopup="dialog">
       <div class="ph"><span class="kind">${esc(p.kind)}</span>${p.st ? status(...p.st) : ""}</div>
       <h3>${esc(p.name)}</h3>
       <p>${esc(p.desc)}</p>
@@ -632,6 +713,46 @@ footer { padding: 24px 0 40px; color: var(--text-3); font-size: 12.5px; }
     catch { showToast(EMAIL); }
   }
   $$("[data-copy-email]").forEach((b) => b.addEventListener("click", copyEmail));
+
+  /* ---------- 3D, spotlight, contadores, aparición ---------- */
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const tilt = $("#tilt");
+  if (!reduce && fine) {
+    tilt.addEventListener("pointermove", (e) => {
+      const r = tilt.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      tilt.classList.add("moving");
+      tilt.style.setProperty("--ry", `${(x - .5) * 16}deg`);
+      tilt.style.setProperty("--rx", `${(.5 - y) * 12}deg`);
+      tilt.style.setProperty("--mx", `${x * 100}%`); tilt.style.setProperty("--my", `${y * 100}%`);
+    });
+    tilt.addEventListener("pointerleave", () => {
+      tilt.classList.remove("moving");
+      ["--rx", "--ry", "--mx", "--my"].forEach((v) => tilt.style.removeProperty(v));
+    });
+    $$(".project").forEach((c) => {
+      c.addEventListener("pointermove", (e) => {
+        const r = c.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        c.style.setProperty("--mx", `${x * 100}%`); c.style.setProperty("--my", `${y * 100}%`);
+        c.style.setProperty("--pry", `${(x - .5) * 6}deg`); c.style.setProperty("--prx", `${(.5 - y) * 6}deg`);
+      });
+    });
+  }
+  const io = "IntersectionObserver" in window ? new IntersectionObserver((ents) => {
+    ents.forEach((en) => {
+      if (!en.isIntersecting) return;
+      en.target.classList.add("on"); io.unobserve(en.target);
+      if (!reduce) $$("[data-count]", en.target).forEach((b) => {
+        const end = +b.dataset.count, suf = b.dataset.suffix || "", t0 = performance.now(), dur = 900;
+        const step = (t) => { const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 4);
+          b.textContent = Math.round(end * e) + suf; if (k < 1) requestAnimationFrame(step); };
+        requestAnimationFrame(step);
+      });
+    });
+  }, { threshold: .15 }) : null;
+  $$(".reveal").forEach((el) => io ? io.observe(el) : el.classList.add("on"));
 
   /* ---------- tema ---------- */
   const root = document.documentElement, themeBtn = $("#theme");
